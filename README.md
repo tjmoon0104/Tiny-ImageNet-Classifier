@@ -11,7 +11,7 @@ Tiny-ImageNet Classifier using Pytorch
 | Number of test Images       | 50        |
 | Image Size                  | (64,64,3) |
 
-[Tiny-ImageNet]: https://tiny-imagenet.herokuapp.com/
+[Tiny-ImageNet]: https://tiny-imagenet.herokuapp.com/	"ddd"
 
 
 
