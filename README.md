@@ -11,9 +11,7 @@ Tiny-ImageNet Classifier using Pytorch
 | Number of test Images       | 50        |
 | Image Size                  | (64,64,3) |
 
-[Tiny-ImageNet]: https://tiny-imagenet.herokuapp.com/	"ddd"
-
-
+[Tiny-ImageNet][Tiny-ImageNet]
 
 ## Step.1 Create Baseline Classifier
 
@@ -21,3 +19,4 @@ We will use pretrained ResNet18 model as our baseline model.
 
 Since ResNet18 is trained with 224x224 images and output of 1000 classes, we would have to modify the architecture to fit 64x64 images and output of 200 classes.
 
+[Tiny-ImageNet]: https://tiny-imagenet.herokuapp.com/	"Link to Tiny-ImageNet"
