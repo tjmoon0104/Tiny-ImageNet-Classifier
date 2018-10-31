@@ -15,7 +15,7 @@ Tiny-ImageNet Classifier using Pytorch
 
 ## Step.1 Create Baseline Classifier
 
-We will use pretrained ResNet18 model as our baseline model. 
+We will use ResNet18 model as our baseline model. 
 
 
 
@@ -25,9 +25,13 @@ We will use pretrained ResNet18 model as our baseline model.
 
 Since ResNet18 is trained with 224x224 images and output of 1000 classes, we would have to modify the architecture to fit 64x64 images and output of 200 classes.
 
+
+
+We will first train the model with no pretrained weight
+
 ```python
-#Load Resnet18 with pretrained weights
-model_ft = models.resnet18(pretrained=True)
+#Load Resnet18
+model_ft = models.resnet18()
 #Finetune Final few layers to adjust for tiny imagenet input
 model_ft.avgpool = nn.AdaptiveAvgPool2d(1)
 num_ftrs = model_ft.fc.in_features
@@ -46,9 +50,32 @@ optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.001, momentum=0.9)
 exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 ```
 
+Following figure shows the training and validation results. 
 
 
-![download (1)](C:\Users\김영미\Desktop\download (1).png)
+
+Next we will train the model with pretrained weight using same loss function and optimization
+
+```python
+#Load Resnet18 with pretrained weights
+model_ft = models.resnet18(pretrained=True)
+```
+
+
+
+Following figure shows the training and validation results. 
+
+![](https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/img/baseline.png?raw=true)
+
+With baseline model and pretrained weight, we were able to achieve 56.9% validation accuracy.
+
+Reference [ResNet18_Baseline.ipynb][https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/ResNet18_Baseline.ipynb] for detail python code.
+
+
+
+## Step.2 Preprocessing
+
+
 
 
 
