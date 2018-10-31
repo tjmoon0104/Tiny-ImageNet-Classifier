@@ -17,11 +17,17 @@ Tiny-ImageNet Classifier using Pytorch
 
 We will use a ResNet18 model as our baseline model. 
 
-
-
-![](https://www.researchgate.net/profile/Paolo_Napoletano/publication/322476121/figure/tbl1/AS:668726449946625@1536448218498/ResNet-18-Architecture.png)
-
-
+| Layer Name      | Output Size (Input 224x224x3) | ResNet-18                   |
+| --------------- | ----------------------------- | --------------------------- |
+| conv1           | 112x112x64                    | 7x7, 64, stride=2, pad=3    |
+| max pool        | 56x56x64                      | 3x3, stride=2, pad=1        |
+| layer1          | 56x56x64                      | [3x3, 64] x 2, stride = 1   |
+| layer2          | 28x28x128                     | [3x3, 128] x2, stride = 2   |
+| layer3          | 14x14x256                     | [3x3, 256] x2, stride = 2   |
+| layer4          | 7x7x512                       | [3x3, 512] x2, stride = 2   |
+| average pool    | 1x1x512                       | Adaptive Average Pooling(1) |
+| Fully Connected | 1000                          | 512x1000                    |
+| softmax         | 1000                          |                             |
 
 Since ResNet18 is trained with 224x224 images and output of 1000 classes, we would have to modify the architecture to fit 64x64 images and output of 200 classes.
 
