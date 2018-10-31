@@ -52,7 +52,7 @@ exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 
 Following figure shows the training and validation results. 
 
-
+![](https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/img/baseline_no_pretrain.png?raw=true)
 
 Next we will train the model with pretrained weight using same loss function and optimization
 
