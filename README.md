@@ -15,7 +15,7 @@ Tiny-ImageNet Classifier using Pytorch
 
 ## Step.1 Create Baseline Classifier
 
-We will use ResNet18 model as our baseline model. 
+We will use a ResNet18 model as our baseline model. 
 
 
 
@@ -69,9 +69,9 @@ num_ftrs = model_ft.fc.in_features
 model_ft.fc = nn.Linear(num_ftrs, 200)
 ```
 
-Same loss function and optimization was used.
+Same loss function and optimization were used.
 
-Following figure shows the training and validation results. 
+The following figure shows the training and validation results. 
 
 ![](https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/img/baseline.png?raw=true)
 
@@ -83,7 +83,7 @@ Reference [Baseline][Baseline] for detail python code.
 
 ## Step.2 Preprocessing
 
-Validation accuracy increased from 25.9% to 56.9% by using pretrained weight from ImageNet. The validity of pretrained weight was confirmed, even though the image size was 64x64. For next step, we would like to observe  the validity of pretrained weight when we train the model with 224x224 images. Images has to be preprocessed from 64x64 to 224x224. We used bicubic interpolation to improve the quality of low resolution image when expanding it to 224x224. 
+Validation accuracy increased from 25.9% to 56.9% by using pretrained weight from ImageNet. The validity of pretrained weight was confirmed, even though the image size was 64x64. For the next step, we would like to observe the efficacy of pretrained weight when we train the model with 224x224 images. Images have to be preprocessed from 64x64 to 224x224. We used bicubic interpolation to improve the quality of a low-resolution image when expanding it to 224x224.
 
 ```python
 import cv2
@@ -98,15 +98,13 @@ Following figure shows the training and validation results.
 
 ![](https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/img/resnet18_224.png?raw=true)
 
-With ResNet18 model and pretrained weight with 224x224 preprocessed images, we were able to achieve 73.1% validation accuracy.
+With a ResNet18 model and pretrained weight with 224x224 preprocessed images, we were able to achieve 73.1% validation accuracy.
 
 
 
 ## Step.3 Finetuning
 
-We achieved a classifier model with validation accuracy of 73.1%. However if we evaluate 64x64 validation images with this model, validation accuracy drops to 15.3%. This is due to difference in input image size. 
-
-
+We achieved a classifier model with validation accuracy of 73.1%. However, if we evaluate 64x64 validation images with this model, validation accuracy drops to 15.3%. This drop happens due to the difference in input image size. 
 
 
 
