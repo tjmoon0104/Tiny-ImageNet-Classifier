@@ -171,10 +171,10 @@ For fine tuning, we decided to reduce the kernel size to 3x3, stride to 1, and p
 | ------------ | --------------------------- | --------------------------- |
 | conv1        | 64x64x64                    | (3x3, 64, stride=1, pad=1)* |
 | max pool     | --------------              | (Removed)*                  |
-| conv2        | 64x64x64                    | [3x3, 64] x 2, stride = 1   |
-| conv3        | 32x32x128                   | [3x3, 128] x2, stride = 2   |
-| conv4        | 16x16x256                   | [3x3, 256] x2, stride = 2   |
-| conv5        | 8x8x512                     | [3x3, 512] x2, stride = 2   |
+| layer1       | 64x64x64                    | [3x3, 64] x 2, stride = 1   |
+| layer2       | 32x32x128                   | [3x3, 128] x2, stride = 2   |
+| layer3       | 16x16x256                   | [3x3, 256] x2, stride = 2   |
+| layer4       | 8x8x512                     | [3x3, 512] x2, stride = 2   |
 | average pool | 1x1x512                     | Adaptive Average Pooling(1) |
 
 
@@ -206,11 +206,39 @@ Reference [FineTune][Fine] for detail python code.
 
 
 
+## Summary
+
+|      | Model             | pretrained weight | Dataset | Validation Accuracy |
+| ---- | ----------------- | ----------------- | ------- | ------------------- |
+| 1    | ResNet18          | None              | 64x64   | 25.9%               |
+| 2    | ResNet18          | ImageNet          | 64x64   | 56.9%               |
+| 3    | ResNet18          | ImageNet          | 224x224 | 73.1%               |
+| 4    | ResNet18          | From 3            | 64x64   | 54.5%               |
+| 5    | ResNet18-FineTune | From 3            | 64x64   | 72.3%               |
 
 
 
+| Layer Name   | ResNet-18                   | ResNet-18 FineTune          |
+| ------------ | --------------------------- | --------------------------- |
+| conv1        | 7x7, 64, stride=2, pad=3    | (3x3, 64, stride=1, pad=1)* |
+| max pool     | 3x3, stride=2, pad=1        | (Removed)*                  |
+| layer1       | [3x3, 64] x 2, stride = 1   | [3x3, 64] x 2, stride = 1   |
+| layer2       | [3x3, 128] x2, stride = 2   | [3x3, 128] x2, stride = 2   |
+| layer3       | [3x3, 256] x2, stride = 2   | [3x3, 256] x2, stride = 2   |
+| layer4       | [3x3, 512] x2, stride = 2   | [3x3, 512] x2, stride = 2   |
+| average pool | Adaptive Average Pooling(1) | Adaptive Average Pooling(1) |
 
 
+
+| Layer Name   | ResNet-18 (224x224x3) | ResNet-18 (64x64x3) | ResNet-18-FineTune (64x64x3) |
+| ------------ | --------------------- | ------------------- | ---------------------------- |
+| conv1        | 112x112x64            | 32x32x64            | 64x64x64                     |
+| max pool     | 56x56x64              | 16x16x64            | ---------------              |
+| layer1       | 56x56x64              | 16x16x64            | 64x64x64                     |
+| layer2       | 28x28x128             | 8x8x128             | 32x32x128                    |
+| layer3       | 14x14x256             | 4x4x256             | 16x16x256                    |
+| layer4       | 7x7x512               | 2x2x512             | 8x8x512                      |
+| average pool | 1x1x512               | 1x1x512             | 1x1x512                      |
 
 
 
