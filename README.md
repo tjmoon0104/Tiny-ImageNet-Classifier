@@ -27,7 +27,7 @@ Since ResNet18 is trained with 224x224 images and output of 1000 classes, we wou
 
 
 
-We will first train the model with no pretrained weight
+#### Model with no pretrained weight
 
 ```python
 #Load Resnet18
@@ -54,14 +54,22 @@ Following figure shows the training and validation results.
 
 ![](https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/img/baseline_no_pretrain.png?raw=true)
 
-Next we will train the model with pretrained weight using same loss function and optimization
+With baseline model and pretrained weight, we were able to achieve 25.9% validation accuracy.
+
+
+
+#### Model with pretrained weight
 
 ```python
 #Load Resnet18 with pretrained weights
 model_ft = models.resnet18(pretrained=True)
+#Finetune Final few layers to adjust for tiny imagenet input
+model_ft.avgpool = nn.AdaptiveAvgPool2d(1)
+num_ftrs = model_ft.fc.in_features
+model_ft.fc = nn.Linear(num_ftrs, 200)
 ```
 
-
+Same loss function and optimization was used.
 
 Following figure shows the training and validation results. 
 
@@ -69,7 +77,7 @@ Following figure shows the training and validation results.
 
 With baseline model and pretrained weight, we were able to achieve 56.9% validation accuracy.
 
-Reference [ResNet18_Baseline.ipynb][https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/ResNet18_Baseline.ipynb] for detail python code.
+Reference [Baseline][Baseline] for detail python code.
 
 
 
@@ -84,6 +92,7 @@ Reference [ResNet18_Baseline.ipynb][https://github.com/tjmoon0104/Tiny-ImageNet-
 
 
 [Tiny-ImageNet]: https://tiny-imagenet.herokuapp.com/	"Link to Tiny-ImageNet"
+[Baseline]: https://github.com/tjmoon0104/Tiny-ImageNet-Classifier/blob/master/ResNet18_Baseline.ipynb	"Link to Baseline"
 
 
 
