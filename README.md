@@ -242,6 +242,10 @@ Reference [FineTune][Fine] for detail python code.
 
 
 
+Through this project we could observe the efficacy of transfer learning, using pretrained weight and fine tuning the layer.
+
+
+
 
 
 [Tiny-ImageNet]: https://tiny-imagenet.herokuapp.com/	"Link to Tiny-ImageNet"
