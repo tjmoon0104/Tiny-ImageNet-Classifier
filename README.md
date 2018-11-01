@@ -246,6 +246,16 @@ Through this project we could observe the efficacy of transfer learning, using p
 
 
 
+## Reference
+
+http://cs231n.stanford.edu/reports/2016/pdfs/411_Report.pdf
+
+https://towardsdatascience.com/transfer-learning-946518f95666
+
+[https://medium.com/@14prakash/understanding-and-implementing-architectures-of-resnet-and-resnext-for-state-of-the-art-image-cf51669e1624](https://medium.com/@14prakash/understanding-and-implementing-architectures-of-resnet-and-resnext-for-state-of-the-art-image-cf51669e1624)
+
+https://tiny-imagenet.herokuapp.com/
+
 
 
 [Tiny-ImageNet]: https://tiny-imagenet.herokuapp.com/	"Link to Tiny-ImageNet"
